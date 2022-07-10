@@ -40,12 +40,7 @@ const Home = (): JSX.Element => {
   }, []);
 
   function handleAddProduct(id: number) {
-    const item = cart.find(item => item.id === id)
-    if (item) {
-      updateProductAmount({productId: id, amount: item.amount + 1})
-    } else {
       addProduct(id)
-    }
   }
 
   return (
