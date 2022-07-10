@@ -70,8 +70,8 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       if (!product) return
       await api.get('/stock/' + String(productId))
         .then(res => {
-          if (res.data.amount > product.amount || amount < 0) {
-            saveCart(cart.map(item => item.id === productId ? {...item, amount: item.amount + amount} : item))
+          if (res.data.amount >= amount) {
+            saveCart(cart.map(item => item.id === productId ? {...item, amount: amount} : item))
           } else {
             toast.error('Quantidade solicitada fora de estoque')
           }
